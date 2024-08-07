@@ -3,7 +3,7 @@
 !**/migrations/__init__.py
 
 # Django uploads directory in files
-uploads/user_images/*
+uploads/*
 !uploads/user_images/default.jpg
 
 # Byte-compiled / optimized / DLL files
