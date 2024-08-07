@@ -1,7 +1,10 @@
 import os, datetime
+import sys
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+sys.path.append(os.path.join(BASE_DIR, 'apps'))
 
 SECRET_KEY = 'django-insecure-u6^j^&&20+*7b(71+&#+k22&elygg!q0e((l%xhy%@wl*-0p#v'
 
@@ -21,8 +24,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
-    'user',
-
+    'apps.user',
 ]
 
 REST_FRAMEWORK = {
