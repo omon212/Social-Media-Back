@@ -6,6 +6,7 @@ from .serializers import *
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.exceptions import AuthenticationFailed
 from .authentication import CustomJWTAuthentication
+from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
 
 
 class UserRegisterView(APIView):
@@ -45,12 +46,18 @@ class UserLoginView(APIView):
                     'subscribers': follow.subscribers.count(),
                     'subscriptions': follow.subscriptions.count()
                 }
-                return Response(data, status=200)
-        return Response(serializer.errors, status=400)
+                return Response(data, 200)
+        return Response(serializer.errors, 400)
 
 
-class TestView(APIView):
-    authentication_classes = [CustomJWTAuthentication]
-
-    def get(self, request):
-        return Response('Hello World')
+# class UserLogoutView(APIView):
+#     authentication_classes = [CustomJWTAuthentication]
+#
+#     def post(self, request):
+#         try:
+#             refresh_token = request.data.get('refresh_token')
+#             token = RefreshToken(refresh_token)
+#             token.blacklist()
+#             return Response({"message": "Logged out successfully"}, status=200)
+#         except Exception as e:
+#             return Response({"error": str(e)}, status=400)
