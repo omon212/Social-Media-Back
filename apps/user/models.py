@@ -12,4 +12,13 @@ class UserModel(models.Model):
     REQUIRED_FIELDS = ['email']
 
     def __str__(self):
-        return str(self.username)
+        return str(self.fullname)
+
+
+class FollowModel(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='following')
+    subscribers = models.ManyToManyField(UserModel, related_name='subscribers')
+    subscriptions = models.ManyToManyField(UserModel, related_name='subscriptions', blank=True)
+
+    def __str__(self):
+        return str(self.user.username)

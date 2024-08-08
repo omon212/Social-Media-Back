@@ -3,7 +3,7 @@ from rest_framework import exceptions
 from rest_framework_simplejwt.tokens import UntypedToken
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework_simplejwt.settings import api_settings
-from user.models import UserModel
+from .models import UserModel
 
 
 class CustomJWTAuthentication(BaseAuthentication):
